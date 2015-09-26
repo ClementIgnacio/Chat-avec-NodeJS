@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col sm-12">
+        <h1 class="blue-text">Parlons-nous !</h1>
+      </div>
+    </div>
+
+
+      <!-- ENVOYER SON PSEUDO -->
+      <form class="col s12" id="form_pseudo" action="/" method="POST">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="pseudo" name="pseudo" type="text" placeholder="Quel est votre pseudo ?" class="validate" autofocus />
+          </div>
+        </div>
+        <button id="send_pseudo" class="btn">Envoyer</button>
+      </form>
+
+      <!-- ENVOYER UN MESSAGE -->
+      <form class="col s12" method="POST" id="form_message" style="display:none">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="message" name="message" type="text" placeholder="Que voulez-vous dire ?" class="validate" autofocus />
+          </div>
+        </div>
+        <button id="send_message" class="btn">Envoyer</button>
+      </form>
+
+      <!-- AFFICHER LES MESSAGE -->
+      <div class="row">
+        <div class="col sm-12">
+        <p id="zone_chat">
+        </p>
+        </div>
+      </div>
+      </div>
+    </div>
+ 
+  </div>
+      <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+      var socket = io.connect('http://0.0.0.0:8080')
+
+      $("#send_pseudo").click(function(){
+        var pseudo = $("#pseudo").val();
+        socket.emit('nouveau_client', pseudo);
+        $("#form_pseudo").css('display', 'none');
+        $("#form_message").css('display', 'block');
+        return false;
+      });
+
+      $("#send_message").click(function(){
+        var message = $("#message").val();
+        socket.emit('nouveau_message', message);
+        $("#message").not(':button, :submit, :reset, :hidden').val('').removeAttr('checked');
+        return false;
+      });
+
+
+      socket.on('nouveau_client', function(pseudo){
+        insererMessage(pseudo, "Est entré dans le chat !");
+      })
+
+      socket.on('nouveau_message', function(data){
+        insererMessage(data.pseudo, data.message);
+      })
+
+       function insererMessage(pseudo, message){
+         $("#zone_chat").prepend('<i class="material-icons">face</i><span class="title">' + pseudo + ': </span> ' + message +'</p>');
+       }
+
+                
+      </script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+  </body>
+</html>
+        

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+  <div class="container">
+    <div class="row">
+      <div class="col sm-12">
+        <h1 class="blue-text">Dialoguer avec le serveur</h1>
+
+      
+  </div>
+  <form class="col s12" method="POST">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="poke" name="poke" type="text" placeholder="Envoyer un message au serveur" class="validate" autofocus />
+        </div>
+      </div>
+      <button id="send" class="btn">Envoyer</button>
+    </form>
+       
+      </div>
+    </div>
+ 
+  </div>
+      <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+        <script>
+          var socket = io.connect('http://0.0.0.0:8080')
+
+          socket.on('broad', function(message) {
+                alert('Un utilisateur a ecrit ceci : ' + message);
+            })
+
+          $("#send").click(function(){
+            var contenu = $("#poke").val();
+            socket.emit("message", contenu);
+          });
+                 
+          socket.on('sendd', function(message) {
+                alert('Le serveur a un message pour vous : ' + message);
+            })
+        </script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+  </body>
+</html>
+        
