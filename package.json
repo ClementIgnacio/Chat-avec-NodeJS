@@ -1,6 +1,10 @@
 {
     "name": "Noudnode",
     "version": "0.1.0",
+    "dependencies": {
+        "express": "*",
+        "socket.io": "*",
+    },
     "author": "Clément Ignacio <clem.ignacio@free.fr>",
     "description": "Première appli !"
 }
