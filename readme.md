@@ -13,4 +13,4 @@ Installer les différents packages via :
  Ensuite lancer la dernière commande :
  > nodejs server.js
 
- L'application se lance alors et vous pouvez l'utiliser.
+ L'application se lance et vous pouvez l'utiliser.
