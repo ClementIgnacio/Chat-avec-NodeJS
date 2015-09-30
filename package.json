@@ -1,10 +1,12 @@
 {
     "name": "Noudnode",
     "version": "0.1.0",
-    "dependencies": {
+    "dependencies":
+    {
         "express": "*",
         "socket.io": "*",
+        "browser-sync": "*"
     },
-    "author": "Clément Ignacio <clem.ignacio@free.fr>",
-    "description": "Première appli !"
+    "author": "Clément Ignacio <clem.ignacio@gmail.com>",
+    "description": "Première application avec NodeJS !"
 }
