@@ -1,5 +1,5 @@
 # Chat avec NodeJS
-Dans le cadre de ma découverte de différents langages, je me suis penché sur NodeJS à travers un chat permettant le dialogue instantanée entre plusieurs utilisateurs.
+Dans le cadre de ma découverte de différents langages, je me suis penché sur NodeJS à travers un chat permettant le dialogue instantané entre plusieurs utilisateurs.
 
 ## Installation
 Prérequis : NodeJS et npm installés.
